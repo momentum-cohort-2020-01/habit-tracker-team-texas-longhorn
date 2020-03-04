@@ -9,6 +9,8 @@ autopep8 = "*"
 [packages]
 django = "*"
 django-extensions = "*"
+django-debug-toolbar = "*"
+django-registration-redux = "*"
 
 [requires]
 python_version = "3.8"

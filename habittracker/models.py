@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Habit(models.Model):
     name = models.CharField(max_length=60)
     goal_nbr = models.IntegerField(default=0)
@@ -18,7 +19,7 @@ class Activity(models.Model):
     user = models.ForeignKey(
         "User", related_name="activity", on_delete=models.CASCADE)
     habit = models.ManyToManyField(
-        "Habit", related_name="activity", on_delete=models.CASCADE)
+        "Habit", related_name="activity")
 
 
 class Record(models.Model):
