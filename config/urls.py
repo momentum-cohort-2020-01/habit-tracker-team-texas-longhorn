@@ -3,11 +3,11 @@ from django.contrib import admin
 from habittracker import views
 from django.urls import path, include
 from django.conf.urls.static import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),
+    path('accounts/', include('registration.backends.default.urls')),
 ]
 
 if settings.DEBUG:
