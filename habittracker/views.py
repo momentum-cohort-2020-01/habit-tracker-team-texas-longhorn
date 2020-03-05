@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
-from .models import Habit, Record, Activity, Category, User
+from .models import Habit, Record, Activity, User
 from .forms import HabitForm, ActivityForm
 
 

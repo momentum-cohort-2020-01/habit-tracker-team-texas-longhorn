@@ -40,14 +40,14 @@ class Record(models.Model):
         return f'Record: {self.habit, self.activity}'
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=60)
-    habit = models.ManyToManyField(
-        Habit, related_name='category'
-    )
-    activity = models.ManyToManyField(
-        Activity, related_name='category'
-    )
+# class Category(models.Model):
+#     name = models.CharField(max_length=60)
+#     habit = models.ManyToManyField(
+#         Habit, related_name='category'
+#     )
+#     activity = models.ManyToManyField(
+#         Activity, related_name='category'
+#     )
 
-    def __str__ (self):
-        return f'{self.name}'
+#     def __str__ (self):
+#         return f'{self.name}'
