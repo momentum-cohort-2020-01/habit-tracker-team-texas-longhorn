@@ -1,8 +1,109 @@
+:root {
+  --background: rgb(226, 226, 226);  
+  --highlight1:  rgba(240, 162, 2, 1);
+  --highlight2: rgba(241, 136, 5, 1);
+  --button: rgb(199, 76, 42);
+  --stroke: rgba(14, 20, 40, 1);
+  --cooltone: rgba(123, 158, 137, 1);
+  --handwriting-font: 'Homemade Apple', cursive;
+  --headline-font1: 'Reenie Beanie', cursive;
+  --headline-font2: 'Bungee Inline', cursive;
+  --main-font: 'Mallanna', sans-serif;
+}
+/* REFERENCE WITH 'var(--background-color)' etc */
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  img {
-    max-width:100%;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 0;
+  font-family: var(--main-font)
+}
+
+img {
+  max-width:100%;
+}
+
+body {
+  background-color: var(--background);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  margin-top: 100px;
+  height: 200px;
+  width: 100%;
+  /* background-color: var(--highlight1); */
+}
+
+.profile-pic {
+  background-color: var(--cooltone);
+  width: 20%;
+  height: 100%;
+  min-width: 200px;
+  border-radius: 200px;
+}
+
+.site_title {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--highlight1);
+  width: 80%;
+  height: 100%;
+  align-items: center;
+}
+
+.headline {
+  font-family: var(--headline-font2);
+  color: var(--stroke);
+  text-shadow: -2px 2px var(--button);
+  font-size: 6rem;
+  width: 100%;
+  line-height: 5rem;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.sub-headline{
+  font-family: var(--main-font);
+  color: var(--button);
+  font-size: 1.5rem;
+  line-height: 1rem;
+  font-style: italic;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+
+
+.nav {
+  border-top: 3px solid var(--cooltone);
+  width: 100%;
+  height: 50px;
+  display: flex;
+  background-color: var(--stroke);
+}
+
+.nav ul {
+  width: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  list-style: none;
+}
+
+.nav a {
+  color: var(--background);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
