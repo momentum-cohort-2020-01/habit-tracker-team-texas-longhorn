@@ -9,7 +9,7 @@ from .forms import HabitForm, ActivityForm
 @login_required
 def homepage(request):
     return render(request, 'habittracker/index.html')
- 
+
 # def habits(request):
 #     habits = Habit.objects.all()
 #     return render(request, 'habittracker/index.html', {'habits': habits})
@@ -17,6 +17,7 @@ def homepage(request):
 # def habits_detail(request, pk):
 #     habit = Habit.objects.get(pk=pk)
 #     return render(request, 'habittracker/habits_detail.html', {'habit': habits, 'pk': pk})
+
 
 def new_habit(request):
     if request.method == "POST":
@@ -30,6 +31,18 @@ def new_habit(request):
         form = HabitForm()
     return render(request, 'habittracker/new_habit.html', {'form': form})
 
+
+def new_activity(request):
+    if request.method == "POST":
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            activity = form.save(commit=False)
+            activity.user = request.user
+            activity.save()
+            return redirect('homepage')
+    else:
+        form = ActivityForm()
+    return render(request, 'habittracker/new_activity.html', {'form': form})
 
 # def edit_habit(request, pk):
 #     habit = get_object_or_404(Habit, pk=pk)
