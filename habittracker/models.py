@@ -12,7 +12,7 @@ class Habit(models.Model):
         User, related_name="habit", on_delete=models.CASCADE)
 
     def __str__ (self):
-        return f'{self.name}'
+        return f'Goal: {self.goal_text} Target Number: {self.goal_nbr}'
 
 
 class Activity(models.Model):
@@ -26,6 +26,9 @@ class Activity(models.Model):
     habit = models.ForeignKey(
         'Habit', related_name="activity", on_delete=models.CASCADE)
 
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['created_at', 'habit'], name='one_update_per_day'),]
+    
     def __str__ (self):
         return f'{self.name}'
 
