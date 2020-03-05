@@ -4,14 +4,12 @@ from django.contrib.auth.models import User
 
 class Habit(models.Model):
     name = models.CharField(max_length=60)
-    goal_nbr = models.IntegerField(default=0)
-    goal_text = models.CharField(max_length=60)
+    goal_nbr = models.IntegerField(default=0, null=True, blank=True)
+    goal_text = models.CharField(max_length=60, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
         User, related_name="habit", on_delete=models.CASCADE)
-    record = models.ForeignKey(
-        'Record', related_name="habit", on_delete=models.CASCADE)
 
     def __str__ (self):
         return f'{self.name}'
@@ -19,10 +17,10 @@ class Habit(models.Model):
 
 class Activity(models.Model):
     name = models.CharField(max_length=60)
-    category = models.CharField(max_length=60)
+    category = models.CharField(max_length=60, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    result = models.IntegerField(default=0)
+    result = models.IntegerField(default=0, null=True, blank=True)
     user = models.ForeignKey(
         User, related_name="activity", on_delete=models.CASCADE)
     habit = models.ForeignKey(
@@ -32,12 +30,12 @@ class Activity(models.Model):
         return f'{self.name}'
 
 
-class Record(models.Model):
-    user = models.ForeignKey(
-        User, related_name="record", on_delete=models.CASCADE)
+# class Record(models.Model):
+#     user = models.ForeignKey(
+#         User, related_name="record", on_delete=models.CASCADE)
     
-    def __str__(self):
-        return f'Record: {self.habit, self.activity}'
+#     def __str__(self):
+#         return f'Record: {self.habit, self.activity}'
 
 
 # class Category(models.Model):
