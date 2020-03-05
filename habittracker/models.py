@@ -6,24 +6,48 @@ class Habit(models.Model):
     name = models.CharField(max_length=60)
     goal_nbr = models.IntegerField(default=0)
     goal_text = models.CharField(max_length=60)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
         User, related_name="habit", on_delete=models.CASCADE)
     record = models.ForeignKey(
         'Record', related_name="habit", on_delete=models.CASCADE)
 
+    def __str__ (self):
+        return f'{self.name}'
+
 
 class Activity(models.Model):
     name = models.CharField(max_length=60)
-    date = models.DateField(auto_now=True)
+    category = models.CharField(max_length=60)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     result = models.IntegerField(default=0)
     user = models.ForeignKey(
         User, related_name="activity", on_delete=models.CASCADE)
-    habit = models.ManyToManyField(
-        'Habit', related_name="activity")
+    habit = models.ForeignKey(
+        'Habit', related_name="activity", on_delete=models.CASCADE)
+
+    def __str__ (self):
+        return f'{self.name}'
 
 
 class Record(models.Model):
     user = models.ForeignKey(
         User, related_name="record", on_delete=models.CASCADE)
+    
     def __str__(self):
         return f'Record: {self.habit, self.activity}'
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=60)
+    habit = models.ManyToManyField(
+        Habit, related_name='category'
+    )
+    activity = models.ManyToManyField(
+        Activity, related_name='category'
+    )
+
+    def __str__ (self):
+        return f'{self.name}'
