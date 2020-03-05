@@ -8,8 +8,9 @@ from .forms import HabitForm, ActivityForm
 
 @login_required
 def homepage(request):
-    return render(request, 'habittracker/index.html')
-
+    my_habits = Habit.objects.filter(user=request.user)
+    return render(request, 'habittracker/index.html', { 'my_habits': my_habits })
+ 
 # def habits(request):
 #     habits = Habit.objects.all()
 #     return render(request, 'habittracker/index.html', {'habits': habits})

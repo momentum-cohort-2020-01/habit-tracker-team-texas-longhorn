@@ -18,8 +18,8 @@ class Habit(models.Model):
 class Activity(models.Model):
     name = models.CharField(max_length=60)
     category = models.CharField(max_length=60, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
     result = models.IntegerField(default=0, null=True, blank=True)
     user = models.ForeignKey(
         User, related_name="activity", on_delete=models.CASCADE)
