@@ -35,7 +35,7 @@
 
 
         <p class="link category">
-            {% if habit.category %}<a href='{% url "habit_by_category" habit.category.slug %}'>{{habit.category}}</a>
+            {% if habit.category %}<a href='{% url "habits_by_category" habit.category.slug %}'>{{habit.category}}</a>
             {% endif %}
         </p>
 

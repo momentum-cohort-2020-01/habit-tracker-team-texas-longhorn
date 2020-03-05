@@ -15,7 +15,7 @@
   <div class="habitcontainer">
     <div>
       <h3 class="title link">
-        <a href="{% url 'habits-detail' habit.pk %}">{{habit.title}}</a>
+        <a href="{% url 'habits_detail' habit.pk %}">{{habit.title}}</a>
       </h3>
       <p class="details">
         {{habit.goal}}
@@ -34,13 +34,11 @@
 
 
     <p class="link description">
-      {% if book.category %}<a href='{% url "books-by-category" book.category.slug %}'>{{book.category}}</a>{% endif %}
+      {% if habit.category %}<a href='{% url "habits_by_category" habit.category.slug %}'>{{habit.category}}</a>{% endif %}
     </p>
 
     <p class="edit-delete">
-      <a href="{% url 'edit-book' pk=book.pk %}">Edit Book</a>
-      <a href="{% url 'delete-book' pk=book.pk %}"
-        onclick="return confirm('Are you sure you want to delete this?')">Delete Book</a>
+      <a href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a>
     </p>
 
   </div>
