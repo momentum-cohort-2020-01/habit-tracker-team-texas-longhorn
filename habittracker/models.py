@@ -20,7 +20,7 @@ class Habit(models.Model):
         return f'{delta} days'
 
     def __str__(self):
-        return f"Your chosen habit is {self.name}, with a goal of {self.goal_nbr} {self.goal._description} for {self.duration} days, from {self.start_date} to {self.end_date}"
+        return f"Your chosen habit is {self.name}, with a goal of {self.goal_nbr} {self.goal._description} for {self.duration} days, from {self.start_date} - {self.end_date}"
 
 
 class Activity(models.Model):
