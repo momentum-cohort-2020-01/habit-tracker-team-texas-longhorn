@@ -16,8 +16,8 @@ class Habit(models.Model):
 
     @property
     def duration(self):
-        delta = end_date - start_date
-        return f'{ delta } days'
+        delta = self.end_date - self.start_date
+        return f'{delta} days'
 
     def __str__(self):
         return f"Your chosen habit is {self.name}, with a goal of {self.goal_nbr} {self.goal._description} for {self.duration} days, from {self.start_date} to {self.end_date}"

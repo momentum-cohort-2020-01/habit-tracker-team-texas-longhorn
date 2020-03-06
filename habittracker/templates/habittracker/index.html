@@ -10,13 +10,21 @@
             <h4 class='sub-headline'>a better-than-anticipated journey</h4>
         </div>  
     </header> 
-    <nav class='nav'>
+    <nav class='nav stroke_bg'>
             <ul>
-                <li class='nav-item button'><a href="{% url 'new_habit' %}">TRACK A NEW HABIT!</a></li>
-                <li class='nav-item button'><a href='#daily journal/'>LOG TODAY'S ACTIVITIES</a></li>
+                <li class='nav-item button'><a href="{% url 'new_habit' %}">TRACK NEW</a></li>
+                <li class='nav-item button'><a href='#daily journal/'>DAILY LOG</a></li>
             </ul>
     </nav>
-    <main>
+    <nav class='nav alt_bg'>
+        <ul>
+            <li class='nav-item button'><a href="{% url 'habits_detail' %}">DETAIL</a></li>
+            <li class='nav-item button'><a href='#Accountability/'>ACCOUNTABILITY</a></li>
+        </ul>
+</nav>
+
+
+    <!-- <main>
 
         <div class='activities'>
             <h3>Manage your daily habits, keep track of your progress and improve yourself as a person</h3> 
@@ -33,6 +41,6 @@
             {% comment %} display on this page AND on redirect to habits_detail? {% endcomment %}
         </div>
 
-    </main>
+    </main> -->
 </div>
 {% endblock %}
