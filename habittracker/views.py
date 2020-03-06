@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from datetime import datetime
 
 from .models import Habit, Activity, User
 from .forms import HabitForm, ActivityForm
@@ -9,8 +10,8 @@ from .forms import HabitForm, ActivityForm
 @login_required
 def homepage(request):
     my_habits = Habit.objects.filter(user=request.user)
-    return render(request, 'habittracker/index.html', { 'my_habits': my_habits })
- 
+    return render(request, 'habittracker/index.html', {'my_habits': my_habits})
+
 # def habits(request):
 #     habits = Habit.objects.all()
 #     return render(request, 'habittracker/index.html', {'habits': habits})
