@@ -7,8 +7,8 @@ class Habit(models.Model):
     name = models.CharField(max_length=60)
     goal_nbr = models.IntegerField(default=0, null=True, blank=True)
     goal_description = models.CharField(max_length=60, null=True, blank=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
@@ -16,11 +16,11 @@ class Habit(models.Model):
 
     @property
     def duration(self):
-        delta = end_date - start_date
-        return f'{ delta } days'
+        delta = self.end_date - self.start_date
+        return f'{delta.days} days'
 
     def __str__(self):
-        return f"Your chosen habit is {self.name}, with a goal of {self.goal_nbr} {self.goal._description} for {self.duration} days, from {self.start_date} to {self.end_date}"
+        return f"My Goal: {self.name} {self.goal_nbr} {self.goal_description} for {self.duration} from {self.start_date} to {self.end_date}"
 
 
 class Activity(models.Model):

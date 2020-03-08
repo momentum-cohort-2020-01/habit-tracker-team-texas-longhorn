@@ -46,20 +46,21 @@ def new_activity(request):
         form = ActivityForm()
     return render(request, 'habittracker/new_activity.html', {'form': form})
 
-# def edit_habit(request, pk):
-#     habit = get_object_or_404(Habit, pk=pk)
-#     if request.method == "POST":
-#         form = HabitForm(request.POST, instance=habit)
-#         category = request.POST.get('category')
-#         form.fields['category'].choices = [(category, category)]
 
-#         if form.is_valid():
-#             habit = form.save()
-#             form.save()
-#             return redirect('habits')
-#     else:
-#         form = HabitForm(instance=habit)
-#         return render(request, 'habittracker/edit_habit.html', {'form': form})
+def edit_habit(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    if request.method == "POST":
+        form = HabitForm(request.POST, instance=habit)
+        category = request.POST.get('category')
+        form.fields['category'].choices = [(category, category)]
+
+        if form.is_valid():
+            habit = form.save()
+            form.save()
+            return redirect('habits')
+    else:
+        form = HabitForm(instance=habit)
+        return render(request, 'habittracker/edit_habit.html', {'form': form})
 
 # def habits_by_category(request, slug):
 #     category = Category.objects.get(slug=slug)

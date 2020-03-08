@@ -11,7 +11,7 @@ class HabitForm (ModelForm):
                   'start_date', 'end_date')
         labels = {
             'name': _('Habit:'),
-            'goal_nbr': _('Goal Nbr:'),
+            'goal_nbr': _('Goal Number:'),
             'goal_description': _('Goal Description:'),
             'start_date': _('Habit start date:'),
             'end_date': _('Habit end date:'),
