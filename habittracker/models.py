@@ -50,8 +50,8 @@ class Activity(models.Model):
     result_nbr = models.IntegerField(default=0, null=True, blank=True)
     created_at = models.DateField(default=datetime.date.today)
     updated_at = models.DateField(auto_now=True)
-    user = models.ForeignKey(
-        User, related_name="activity", on_delete=models.CASCADE)
+    # user = models.ForeignKey(
+    #     User, related_name="activity", on_delete=models.CASCADE)
     habit = models.ForeignKey(
         'Habit', related_name="activity", on_delete=models.CASCADE)
 
