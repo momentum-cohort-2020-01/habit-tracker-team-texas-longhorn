@@ -2,13 +2,49 @@
 
 {% block content %}
 
-<p>{{ habit.name }}</p>
-{% for result in results_y %}
-<p>{{result}}</p>
-{% endfor%}
-{% for date in dates_x %}
-<p>{{date}}</p>
-{% endfor %}
-<p>CREATE CHART AND PASS APPROPRIATE CONTEXT</p>
+<div class='container'>
+    <p>{{ habit.name }}</p>
+<div class="chart">
+    <canvas id="bar-line-chart" width="200" height="100"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+
+let config = {
+    type: 'bar',
+    data: {
+        datasets: [{
+            label: 'DAILY RESULTS ({{habit.goal_description}})',
+            data: {{ results_y|safe }},
+            backgroundColor: 'rgba(14, 20, 40, .8)'
+        }, {
+            label: 'GOAL',
+            data: {{ goal_data|safe }},
+            pointRadius: 0,
+            type: 'line',
+            borderColor: 'rgba(242, 13, 13, 0.6)',
+            backgroundColor: 'rgba(242, 13, 13, 0)',
+        }],
+        labels: {{ dates_x|safe }}
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes:[{
+                ticks: {
+                    beginAtZero: true,
+                }
+            }]
+        },
+    }
+};
+
+window.onload = function() {
+      var ctx = document.getElementById('bar-line-chart').getContext('2d');
+      window.myBar = new Chart(ctx, config);
+    }
+</script>
+
+</div>
 
 {% endblock %}
