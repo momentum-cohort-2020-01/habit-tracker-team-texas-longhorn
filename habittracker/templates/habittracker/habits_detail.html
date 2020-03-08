@@ -11,6 +11,8 @@
   <p>{{habit.name}}</p>
   <p>Your goal is to achieve a {{habit.eval_method}} of {{habit.goal_nbr}} {{habit.goal_description}}</p>
   <p>You have {{habit.days_remaining}} days left to complete it!</p>
+  <a class='detail-button' href="{% url 'edit_habit' habit.pk %}">EDIT</a>
+  <a class='detail-button' href="{% url 'progress' habit.pk %}">VIEW PROGRESS</a>
 </div>
 {% endfor%}
 </div>

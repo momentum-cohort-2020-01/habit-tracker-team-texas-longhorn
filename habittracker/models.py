@@ -41,9 +41,8 @@ class Habit(models.Model):
     # @property
     # def status(self):
         
-
     def __str__(self):
-        return f"{self.name},"
+        return f"{self.name}"
 
 
 class Activity(models.Model):
@@ -66,7 +65,7 @@ class Activity(models.Model):
             fields=['created_at', 'habit'], name='one_update_per_day'), ]
 
     def __str__(self):
-        return f'{result_nbr} on {created_at}'
+        return f'{self.result_nbr} on {self.created_at}'
 
 
 # class Record(models.Model):
