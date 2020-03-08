@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('detail/', views.habits_detail, name='habits_detail'),
     path('new_habit/', views.new_habit, name='new_habit'),
+    path('new_activity/', views.new_activity, name='new_activity'),
     path('accounts/', include('registration.backends.default.urls')),
 ]
 

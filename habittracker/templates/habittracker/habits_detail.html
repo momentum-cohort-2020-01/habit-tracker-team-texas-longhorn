@@ -6,8 +6,12 @@
         <p class='headline2'>YOUR HABITS</p>
     </div>  
   </header> 
+{% for habit in my_habits %}
+<div class='habit_container' data-status={{habit.status}}>
+  <p>{{habit.name}}</p>
+  <p>Your goal is to achieve a {{habit.eval_method}} of {{habit.goal_nbr}} {{habit.goal_description}}</p>
+  <p>You have {{habit.days_remaining}} days left to complete it!</p>
 </div>
-
-
-
+{% endfor%}
+</div>
 {% endblock %}

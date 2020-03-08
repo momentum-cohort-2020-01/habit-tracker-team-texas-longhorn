@@ -8,14 +8,15 @@ from django import forms
 class HabitForm (ModelForm):
     class Meta:
         model = Habit
-        fields = ('name', 'goal_nbr', 'goal_description',
+        fields = ('name', 'goal_nbr', 'goal_description', 'eval_method',
                   'start_date', 'end_date')
         labels = {
             'name': _('Habit:'),
             'goal_nbr': _('Goal Number:'),
-            'goal_description': _('Goal Description:'),
-            'start_date': _('Habit start date:'),
-            'end_date': _('Habit end date:'),
+            'goal_description': _('Unit of Measure:'),
+            'eval_method': _('Evaluate:'),
+            'start_date': _('Start Date:'),
+            'end_date': _('End Date:'),
         }
         widgets =  {
             'start_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date'}),
@@ -26,8 +27,12 @@ class HabitForm (ModelForm):
 class ActivityForm (ModelForm):
     class Meta:
         model = Activity
-        fields = ('habit', 'result_nbr')
+        fields = ('created_at','habit', 'result_nbr')
         labels = {
+            'created_at': _('Date of Completion:'),
             'habit': _('Habit:'),
-            'result_nbr': _('Enter your actual result'),
+            'result_nbr': _('Enter your result:'),
+        }
+        widgets =  {
+            'created_at': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date'}),
         }

@@ -2,11 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 
+GOAL_EVALUATE = (
+    ('Daily Average', 'DAILY AVERAGE'),
+    ('Weekly Average', 'WEEKLY AVERAGE'),
+    ('Daily Total', 'DAILY TOTAL'),
+    ('Weekly Total', 'WEEKLY TOTAL'),
+    ('Total', 'TOTAL'),
+)
 
 class Habit(models.Model):
     name = models.CharField(max_length=60)
     goal_nbr = models.IntegerField(default=0, null=True, blank=True)
     goal_description = models.CharField(max_length=60, null=True, blank=True)
+    eval_method = models.CharField(max_length=100, choices=GOAL_EVALUATE)
     start_date = models.DateField()
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -17,16 +25,26 @@ class Habit(models.Model):
     @property
     def duration(self):
         delta = self.end_date - self.start_date
-        return f'{delta} days'
+        return f'{delta.days} days'
+
+    @property
+    def days_remaining(self):
+        today = datetime.date.today()
+        remaining = self.end_date - today
+        return remaining.days
+        
+    # @property
+    # def status(self):
+        
 
     def __str__(self):
-        return f"Your chosen habit is {self.name},"
+        return f"{self.name},"
 
 
 class Activity(models.Model):
     # name = models.CharField(max_length=60)
     result_nbr = models.IntegerField(default=0, null=True, blank=True)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField(default=datetime.date.today)
     updated_at = models.DateField(auto_now=True)
     user = models.ForeignKey(
         User, related_name="activity", on_delete=models.CASCADE)
@@ -43,7 +61,7 @@ class Activity(models.Model):
             fields=['created_at', 'habit'], name='one_update_per_day'), ]
 
     def __str__(self):
-        return f"Today you achieved: {self.result_nbr} of your {self.habit.name} {self.habit.goal_description}"
+        return f'{result_nbr} on {created_at}'
 
 
 # class Record(models.Model):
