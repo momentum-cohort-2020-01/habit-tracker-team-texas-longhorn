@@ -57,6 +57,12 @@ def edit_habit(request, pk):
         form = HabitForm(instance=habit)
         return render(request, 'habittracker/edit_habit.html', {'form': form})
 
+
+def progress(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    return render(request, 'habittracker/progress.html', {'habit': habit})
+
+
 # def habits_by_category(request, slug):
 #     category = Category.objects.get(slug=slug)
 #     habits_for_category = Habit.objects.filter(category=category)

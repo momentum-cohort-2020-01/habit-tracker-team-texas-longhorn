@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container'>
+<a href="{% url 'homepage' %}">Home</a>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table class="details">
+            {{ form.as_table }}
+        </table>
+        <p>
+        <input type="submit" value="Submit" class="button">
+        </p>
+    </form>
+</div>
+{% endblock %}

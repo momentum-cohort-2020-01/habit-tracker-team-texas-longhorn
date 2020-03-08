@@ -41,7 +41,6 @@ class Habit(models.Model):
     # @property
     # def status(self):
         
-
     def __str__(self):
         return f"{self.name},"
 
