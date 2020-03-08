@@ -27,6 +27,11 @@ class Habit(models.Model):
         delta = self.end_date - self.start_date
         return f'{delta.days} days'
 
+    #I'll explain my reasoning today about why I think this is too much in the string method.
+    #def __str__(self):
+    #    return f"My Goal: {self.name} {self.goal_nbr} {self.goal_description} for {self.duration} from {self.start_date} to {self.end_date}"
+
+
     @property
     def days_remaining(self):
         today = datetime.date.today()
