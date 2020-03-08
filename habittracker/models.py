@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+import datetime
 
 
 class Habit(models.Model):
@@ -20,7 +20,7 @@ class Habit(models.Model):
         return f'{delta} days'
 
     def __str__(self):
-        return f"Your chosen habit is {self.name}, with a goal of {self.goal_nbr} {self.goal._description} for {self.duration} days, from {self.start_date} - {self.end_date}"
+        return f"Your chosen habit is {self.name},"
 
 
 class Activity(models.Model):
@@ -35,8 +35,8 @@ class Activity(models.Model):
 
     @property
     def diff_between_goal_result(self):
-        diff_nbr = result_nbr - self.habit.goal_nbr
-        return f'{ diff_nbr }'
+        diff_nbr = self.result_nbr - self.habit.goal_nbr
+        return diff_nbr
 
     class Meta:
         constraints = [models.UniqueConstraint(
