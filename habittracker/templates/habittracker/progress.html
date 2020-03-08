@@ -2,7 +2,13 @@
 
 {% block content %}
 
-<p>A SINGLE HABIT:</p>
+<p>{{ habit.name }}</p>
+{% for result in results_y %}
+<p>{{result}}</p>
+{% endfor%}
+{% for date in dates_x %}
+<p>{{date}}</p>
+{% endfor %}
 <p>CREATE CHART AND PASS APPROPRIATE CONTEXT</p>
 
 {% endblock %}
