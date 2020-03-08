@@ -1,48 +1,17 @@
 {% extends 'base.html' %}
-{% block content %}
-
-<body class="body">
-  <div class="headercontainer">
-    <h1 class="header"> {{habit.title}} </h1>
-    <div class="newhabit">
-      <a href="{% url 'habits' %}">Home</a>
-    </div>
-    <div>
-      <a class="logout description link" href="accounts/logout/">Logout</a>
-    </div>
-  </div>
-
-  <div class="habitcontainer">
-    <div>
-      <h3 class="title link">
-        <a href="{% url 'habits_detail' habit.pk %}">{{habit.title}}</a>
-      </h3>
-      <p class="details">
-        {{habit.goal}}
-      </p>
-    </div>
-
-    <div class="link activity">
-      {{habit.activity}}
-      <p class="link">
-        <a href="{{habit.url}}">{{habit.url}}</a>
-      </p>
-      <p>
-        Created at: {{habit.created_at}}
-      </p>
-    </div>
-
-
-    <p class="link description">
-      {% if habit.category %}<a href='{% url "habits_by_category" habit.category.slug %}'>{{habit.category}}</a>{% endif %}
-    </p>
-
-    <p class="edit-delete">
-      <a href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a>
-    </p>
-
-  </div>
-
-
-</body>
+{% block content %}\
+<div class='container'>
+  <header class='header'>
+    <div class='site_title2'>
+        <p class='headline2'>YOUR HABITS</p>
+    </div>  
+  </header> 
+{% for habit in my_habits %}
+<div class='habit_container' data-status={{habit.status}}>
+  <p>{{habit.name}}</p>
+  <p>Your goal is to achieve a {{habit.eval_method}} of {{habit.goal_nbr}} {{habit.goal_description}}</p>
+  <p>You have {{habit.days_remaining}} days left to complete it!</p>
+</div>
+{% endfor%}
+</div>
 {% endblock %}
