@@ -65,6 +65,9 @@ def progress(request, pk):
     dates_x = [activity.created_at for activity in activities]
     return render(request, 'habittracker/progress.html', {'habit': habit, 'results_y': results_y, 'dates_x': dates_x})
 
+def logout(request):
+    return redirect('homepage')
+
 
 # def habits_by_category(request, slug):
 #     category = Category.objects.get(slug=slug)
