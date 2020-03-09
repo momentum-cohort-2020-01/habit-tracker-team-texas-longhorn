@@ -46,9 +46,6 @@ def edit_habit(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     if request.method == "POST":
         form = HabitForm(request.POST, instance=habit)
-        category = request.POST.get('category')
-        form.fields['category'].choices = [(category, category)]
-
         if form.is_valid():
             habit = form.save()
             form.save()
@@ -61,9 +58,18 @@ def edit_habit(request, pk):
 def progress(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     activities = Activity.objects.all().filter(habit = habit).order_by('created_at')
-    results_y = [activity.result_nbr for activity in activities]
-    dates_x = [activity.created_at for activity in activities]
-    return render(request, 'habittracker/progress.html', {'habit': habit, 'results_y': results_y, 'dates_x': dates_x})
+    day = 0
+    results_y = []
+    dates_x = []
+    goal_data = []
+
+    for activity in activities:
+        day +=1
+        results_y.append(activity.result_nbr)
+        dates_x.append(f'DAY {day}')
+        goal_data.append(habit.goal_nbr)
+
+    return render(request, 'habittracker/progress.html', {'habit': habit, 'results_y': results_y, 'dates_x': dates_x, 'goal_data': goal_data})
 
 def logout(request):
     return redirect('homepage')

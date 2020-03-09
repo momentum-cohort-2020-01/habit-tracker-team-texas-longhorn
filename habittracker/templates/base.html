@@ -10,13 +10,15 @@
     {% block title %}
     <title>Document</title>
     {% endblock %}
+    
 </head>
-<body>
+
     {% block content %}
     {% endblock %}
+    <div class='footer'>
+        <a class='home-logout' href="{% url 'logout' %}">LOGOUT</a>
+        <a class='home-logout' href="{% url 'homepage' %}">HOME</a>
+    <body>
 </body>
-<div class='container'>
-<p><a href="{% url 'logout' %}">LOGOUT</a></p>
-<p><a href="{% url 'homepage' %}">HOME</a></p>
-</div>
+
 </html>
