@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}\
+<div class='container'>
+  <header class='header'>
+    <div class='site_title2'>
+        <p class='headline2'>Observer List</p>
+    </div>  
+  </header> 
+{% for habit in my_habits %}
+<div class='habit_container' data-status={{habit.status}}>
+  <p>{{habit.name}}</p>
+  <p>Your goal is to achieve a {{habit.eval_method}} of {{habit.goal_nbr}} {{habit.goal_description}}</p>
+  <p>You have {{habit.days_remaining}} days left to complete it!</p>
+  <a class='detail-button' href="{% url 'edit_habit' habit.pk %}">EDIT</a>
+  <a class='detail-button' href="{% url 'progress' habit.pk %}">VIEW PROGRESS</a>
+</div>
+{% endfor%}
+</div>
+{% endblock %}

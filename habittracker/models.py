@@ -10,6 +10,7 @@ GOAL_EVALUATE = (
     ('Total', 'TOTAL'),
 )
 
+
 class Habit(models.Model):
     name = models.CharField(max_length=60)
     goal_nbr = models.IntegerField(default=0, null=True, blank=True)
@@ -27,20 +28,19 @@ class Habit(models.Model):
         delta = self.end_date - self.start_date
         return f'{delta.days} days'
 
-    #I'll explain my reasoning today about why I think this is too much in the string method.
-    #def __str__(self):
+    # I'll explain my reasoning today about why I think this is too much in the string method.
+    # def __str__(self):
     #    return f"My Goal: {self.name} {self.goal_nbr} {self.goal_description} for {self.duration} from {self.start_date} to {self.end_date}"
-
 
     @property
     def days_remaining(self):
         today = datetime.date.today()
         remaining = self.end_date - today
         return remaining.days
-        
+
     # @property
     # def status(self):
-        
+
     def __str__(self):
         return f"{self.name}"
 
@@ -66,6 +66,23 @@ class Activity(models.Model):
 
     def __str__(self):
         return f'{self.result_nbr} on {self.created_at}'
+
+
+class Observer(models.Model):
+    observer = models.ForeignKey(
+        User, related_name='observations', on_delete=models.CASCADE)
+    habit = models.ForeignKey(
+        Habit, related_name='observers', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        # returns observer primary key linked to user habit
+        return f"User: {self.observer.pk} => Habit: {self.habit.pk}"
+
+    class Meta:
+        constraints = [models.UniqueConstraint(
+            fields=['observer', 'habit'], name='unique_observers'),
+        ]
 
 
 # class Record(models.Model):

@@ -14,6 +14,7 @@ urlpatterns = [
     path('new_activity/', views.new_activity, name='new_activity'),
     path('accounts/logout', views.logout, name='logout'),
     path('accounts/', include('registration.backends.default.urls')),
+    path('link_observer/', views.link_observer, name='link_observer'),
 ]
 
 if settings.DEBUG:
